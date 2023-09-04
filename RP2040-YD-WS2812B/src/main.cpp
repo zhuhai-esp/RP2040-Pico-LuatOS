@@ -5,6 +5,7 @@ Adafruit_NeoPixel pixels(1, 23, NEO_BGR + NEO_KHZ800);
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
+  pixels.setBrightness(20);
   pixels.begin();
 }
 
