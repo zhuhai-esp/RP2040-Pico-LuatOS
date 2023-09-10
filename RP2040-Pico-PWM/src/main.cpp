@@ -1,21 +1,18 @@
 #include <Arduino.h>
+#include <math.h>
 #include "RP2040_PWM.h"
 
 RP2040_PWM *PWM_Instance;
 
-float frequency;
-float dutyCycle;
+float frequency = 20000;
 
 #define pinToUse LED_BUILTIN
 
-void setup() { PWM_Instance = new RP2040_PWM(pinToUse, 20000, 0); }
+void setup() { PWM_Instance = new RP2040_PWM(pinToUse, frequency, 0); }
 
 void loop() {
-  delay(1000);
-  frequency = 20000;
-  dutyCycle = 90;
-  PWM_Instance->setPWM(pinToUse, frequency, dutyCycle);
-  delay(1000);
-  dutyCycle = 10;
-  PWM_Instance->setPWM(pinToUse, frequency, dutyCycle);
+  for(int i = 0; i < 80; i++){
+    PWM_Instance->setPWM(pinToUse, frequency, abs(40 - i));
+    delay(50);
+  }
 }

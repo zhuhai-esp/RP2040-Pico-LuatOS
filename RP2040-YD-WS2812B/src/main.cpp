@@ -5,17 +5,23 @@ Adafruit_NeoPixel pixels(1, 23, NEO_BGR + NEO_KHZ800);
 
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);
   pixels.setBrightness(20);
   pixels.begin();
 }
 
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);
-  pixels.setPixelColor(0, pixels.Color(200, 100, 100));
+  pixels.setPixelColor(0, pixels.Color(255, 0, 0));
   pixels.show();
-  delay(300);
-  digitalWrite(LED_BUILTIN, LOW);
-  pixels.setPixelColor(0, pixels.Color(0, 10, 20));
+  delay(500);
+  pixels.setPixelColor(0, pixels.Color(0, 255, 0));
   pixels.show();
-  delay(2000);
+  delay(500);
+  pixels.setPixelColor(0, pixels.Color(0, 0, 255));
+  pixels.show();
+  delay(500);
+  for (int i = 0; i < 65535; i += 10) {
+    pixels.rainbow(i);
+    pixels.show();
+  }
 }
